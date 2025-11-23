@@ -1,0 +1,846 @@
+/* =========================================================
+   CHRONO SURVIVOR — STYLE PRO
+   Optimizado Mobile + Desktop
+   ========================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=Russo+One&display=swap');
+
+* {
+    box-sizing: border-box;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    background: #050505;
+    overflow: hidden;
+    touch-action: none;
+    font-family: 'Russo One', sans-serif;
+}
+
+/* =========================================================
+   START SCREEN
+   ========================================================= */
+
+#start-screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0,0,0,0.92);
+    backdrop-filter: blur(6px);
+    text-align: center;
+    padding: 30px;
+}
+
+.game-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 3.8rem;
+    color: #00d2ff;
+    text-shadow: 0 0 25px #00d2ff;
+    margin-bottom: 10px;
+    line-height: 1.1;
+}
+
+.subtitle {
+    color: #888;
+    letter-spacing: 4px;
+    font-size: 1rem;
+    margin-bottom: 40px;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 0.5; }
+    50% { opacity: 1; }
+    100% { opacity: 0.5; }
+}
+
+/* CLASS CARDS ------------------------------------------------ */
+
+.class-selection {
+    display: flex;
+    gap: 15px;
+    flex-direction: column;
+    width: 85%;
+    max-width: 380px;
+    pointer-events: auto;
+}
+
+.class-card {
+    background: linear-gradient(160deg, #222, #0a0a0a);
+    border: 1px solid #333;
+    padding: 15px 25px;
+    border-radius: 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    transition: transform 0.12s;
+}
+
+.class-card:active {
+    transform: scale(0.96);
+    border-color: #00d2ff;
+    background: #2a2a2a;
+}
+
+.class-image {
+    width: 70px;
+    height: 70px;
+    object-fit: contain;
+    border-radius: 12px;
+    background: #000;
+    padding: 5px;
+}
+
+.card-text h3 {
+    margin: 0;
+    color: #fff;
+    font-size: 1.2rem;
+}
+
+.card-text p {
+    margin: 0;
+    color: #aaa;
+    font-size: 0.85rem;
+}
+
+
+/* =========================================================
+   UI LAYER
+   ========================================================= */
+
+#ui-layer {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    top: 0;
+    left: 0;
+}
+
+/* =========================================================
+   TOP HUD
+   ========================================================= */
+
+#top-hud {
+    position: absolute;
+    top: env(safe-area-inset-top);
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+    padding: 15px 20px;
+}
+
+.stat-box {
+    background: rgba(0,0,0,0.6);
+    padding: 6px 12px;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 1rem;
+    border: 1px solid #444;
+}
+
+/* =========================================================
+   HP / XP BARS
+   ========================================================= */
+
+#bars-container {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 500px;
+    pointer-events: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.bar-bg {
+    width: 100%;
+    background: #111;
+    border-radius: 6px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+    border: 1px solid #222;
+}
+
+.main-hp { height: 22px; }
+.xp-bg  { height: 8px; }
+
+#hp-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #c0392b, #e74c3c);
+    width: 100%;
+    transition: width 0.2s;
+}
+
+#xp-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #8e44ad, #9b59b6);
+    width: 0%;
+    transition: width 0.2s;
+}
+
+.bar-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 0.75rem;
+    color: white;
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 2px #000;
+}
+
+/* =========================================================
+   PAUSE BUTTON
+   ========================================================= */
+
+#pause-btn {
+    position: absolute;
+    top: calc(env(safe-area-inset-top) + 15px);
+    right: 15px;
+    pointer-events: auto;
+    width: 46px;
+    height: 46px;
+    border-radius: 12px;
+    background: #222;
+    border: 1px solid #555;
+    color: #fff;
+    font-size: 1rem;
+}
+
+/* =========================================================
+   SKILL BUTTON
+   ========================================================= */
+
+#skill-button {
+    position: absolute;
+    right: 40px;
+    bottom: 80px;
+    width: 88px;
+    height: 88px;
+    border-radius: 50%;
+    border: 4px solid white;
+    background: rgba(0,0,0,0.25);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    pointer-events: auto;
+}
+
+#skill-icon {
+    width: 70%;
+    height: 70%;
+    opacity: 0.9;
+}
+
+#skill-cooldown {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 0%;
+    background: rgba(0,0,0,0.65);
+    transition: height 0.05s linear;
+}
+
+/* =========================================================
+   JOYSTICK
+   ========================================================= */
+
+#joystick-zone {
+    position: absolute;
+    bottom: 90px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 140px;
+    height: 140px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 50%;
+    border: 2px solid rgba(255,255,255,0.1);
+    pointer-events: auto;
+    touch-action: none;
+    backdrop-filter: blur(4px);
+}
+
+#joystick-knob {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background: rgba(0, 210, 255, 0.4);
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 15px rgba(0, 210, 255, 0.3);
+}
+
+/* =========================================================
+   BOSS UI
+   ========================================================= */
+
+#boss-container {
+    position: absolute;
+    top: 90px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+}
+
+#boss-name {
+    color: #e74c3c;
+    font-size: 1.1rem;
+    margin-bottom: 4px;
+    text-shadow: 0 0 10px #000;
+    letter-spacing: 1px;
+}
+
+.boss-bar-bg {
+    width: 100%;
+    height: 18px;
+    background: #111;
+    border: 2px solid #555;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+#boss-hp-fill {
+    height: 100%;
+    width: 100%;
+    background: #c0392b;
+    transition: width 0.2s;
+}
+
+/* Threat Box */
+#boss-powers-container {
+    position: absolute;
+    top: 130px;
+    left: 20px;
+    background: rgba(0,0,0,0.7);
+    padding: 8px;
+    border-radius: 6px;
+    border-left: 2px solid #e74c3c;
+    display: none;
+    pointer-events: none;
+}
+
+.boss-power-item { 
+    font-size: 0.75rem;
+    color: #ddd;
+    margin-top: 2px;
+}
+
+#boss-dialogue {
+    position: fixed;  /* antes era absolute y dependía del boss-container */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    font-size: 3rem;
+    font-family: 'Lilita One', sans-serif;
+    color: #ffdd55;
+    text-shadow: 0 0 12px #ffbb00, 0 0 20px #ffdd66;
+
+    pointer-events: none;
+    z-index: 99999;
+    opacity: 0;
+    transition: opacity 0.3s ease-out;
+}
+
+
+@keyframes fadeUp {
+    0% { opacity:0; transform: translateY(20px); }
+    20% { opacity:1; transform: translateY(0); }
+    80% { opacity:1; }
+    100% { opacity:0; transform: translateY(-50px);}
+}
+
+/* =========================================================
+   UPGRADE SCREEN
+   ========================================================= */
+
+#upgrade-screen {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: none;
+
+    /* Mucho menos oscurecimiento */
+    background: rgba(20, 10, 40, 0.35);
+
+    backdrop-filter: blur(4px);
+
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    animation: upgradeFadeIn 0.35s ease-out;
+}
+
+@keyframes upgradeFadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+#cards-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    width: 80%;
+    max-width: 420px;
+    max-height: 72vh;
+
+    padding: 15px;
+    padding-right: 16px; /* margen antiscroll */
+
+    overflow-y: hidden; /* FIX: NO scroll al hacer hover */
+    scrollbar-width: none;
+}
+
+#cards-container::-webkit-scrollbar {
+    display: none; /* Chrome */
+}
+
+/* ----------------------- */
+/* NUEVO DISEÑO DE CARDS   */
+/* ----------------------- */
+
+/* ============================================
+   CARD WRAPPER — Glow sin recortes
+   ============================================ */
+
+.card-wrapper {
+    padding: 4px;
+    border-radius: 18px;
+
+    /* IMPORTANTE: evitar que el glow se corte */
+    overflow: visible;
+
+    /* Glow base suave */
+    box-shadow:
+        0 0 12px #00ff9966,
+        0 0 22px #5522ff66 inset;
+
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+/* Hover ligero para evitar scroll */
+.card-wrapper:hover {
+    transform: scale(1.02);
+}
+
+/* ============================================
+   CARD BASE — fondo violeta RPG
+   ============================================ */
+
+.card {
+    background: linear-gradient(135deg, #31103f, #1d0826);
+    border-radius: 14px;
+
+    padding: 16px;
+    min-height: 90px;
+
+    border: 2px solid #00ff99b5;
+
+    box-shadow:
+        0 0 10px #00ff88aa inset,
+        0 0 30px rgba(120, 60, 255, 0.4);
+
+    color: #ffffff;
+    text-align: left;
+
+    transition: box-shadow 0.25s, transform 0.15s ease-out;
+}
+
+.card:hover {
+    transform: scale(1.03);
+    box-shadow:
+        0 0 25px #00ffaa,
+        0 0 35px rgba(140, 80, 255, 0.5) inset;
+}
+
+.card h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    text-shadow: 0 0 6px #b47dff;
+}
+
+.card p {
+    margin-top: 6px;
+    font-size: 0.9rem;
+    opacity: 0.92;
+}
+
+
+/* ============================================
+   RAREZA: COMMON (verde suave)
+   ============================================ */
+
+.card.common {
+    border-color: #00ff99;
+    box-shadow:
+        0 0 16px #00ff9955,
+        0 0 28px rgba(120, 200, 120, 0.35) inset;
+}
+
+
+/* ============================================
+   RAREZA: RARE (azul eléctrico)
+   ============================================ */
+
+.card.rare {
+    border-color: #009dff;
+    box-shadow:
+        0 0 16px #009dff66,
+        0 0 35px rgba(40, 120, 255, 0.35) inset;
+}
+
+.card.rare h3 {
+    text-shadow: 0 0 8px #4abbff;
+}
+
+
+/* ============================================
+   RAREZA: EPIC (violeta neon)
+   ============================================ */
+
+.card.epic {
+    border-color: #c241ff;
+    box-shadow:
+        0 0 16px #c241ffaa,
+        0 0 35px rgba(200, 90, 255, 0.35) inset;
+}
+
+.card.epic h3 {
+    text-shadow: 0 0 10px #e37cff;
+}
+
+
+/* ============================================
+   RAREZA: LEGENDARY (oro animado)
+   ============================================ */
+
+.card.legendary {
+    border-color: #ffcc33;
+
+    /* Glow animado */
+    animation: legendaryGlow 1.3s infinite alternate;
+}
+
+@keyframes legendaryGlow {
+    from {
+        box-shadow:
+            0 0 18px #ffdd55aa,
+            0 0 40px rgba(255, 200, 80, 0.35) inset;
+    }
+    to {
+        box-shadow:
+            0 0 28px #ffe680dd,
+            0 0 55px rgba(255, 220, 130, 0.45) inset;
+    }
+}
+
+.card.legendary h3 {
+    color: #ffe98a;
+    text-shadow: 0 0 10px #ffdd55;
+}
+
+
+/* ============================================
+   RAREZA: AURA (blanco/cyan místico)
+   ============================================ */
+
+.card.aura {
+    border-color: #99faff;
+    box-shadow:
+        0 0 18px #99faffaa,
+        0 0 35px rgba(180, 240, 255, 0.4) inset;
+}
+
+.card.aura h3 {
+    text-shadow: 0 0 10px #bbfaff;
+}
+
+
+/* =========================================================
+   PAUSE SCREEN
+   ========================================================= */
+
+#pause-screen {
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.92);
+    backdrop-filter: blur(6px);
+    justify-content: center;
+    align-items: center;
+}
+
+.pause-panel {
+    background: rgba(0,0,0,0.9);
+    padding: 25px;
+    border-radius: 15px;
+    width: 300px;
+    border: 1px solid #444;
+    text-align: center;
+    pointer-events: auto;
+}
+
+.pause-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 15px 0;
+    color: white;
+}
+
+.pause-btn {
+    background: #222;
+    color: #fff;
+    border: 2px solid #555;
+    padding: 8px 14px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.pause-btn.active {
+    background: #00d2ff;
+    color: #000;
+    border-color: #fff;
+    box-shadow: 0 0 10px #00d2ff;
+}
+
+.pause-btn.big {
+    width: 100%;
+    margin-top: 20px;
+    background: #00d2ff;
+    color: #000;
+}
+
+/* =========================================================
+   GAME OVER
+   ========================================================= */
+
+#game-over-screen {
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.92);
+    backdrop-filter: blur(4px);
+    color: white;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+button {
+    background: #00d2ff;
+    color: #000;
+    border: none;
+    padding: 15px 40px;
+    border-radius: 50px;
+    font-family: 'Orbitron';
+    font-weight: 900;
+    font-size: 1.2rem;
+    cursor: pointer;
+    box-shadow: 0 0 15px #00d2ff;
+    margin-top: 20px;
+}
+
+button:active {
+    transform: scale(0.96);
+}
+#skill-button {
+    animation: skillGlow 2.2s infinite;
+}
+
+@keyframes skillGlow {
+    0%   { box-shadow: 0 0 8px rgba(0,210,255,0.4); }
+    50%  { box-shadow: 0 0 18px rgba(0,210,255,0.75); }
+    100% { box-shadow: 0 0 8px rgba(0,210,255,0.4); }
+}
+.level-up-pulse {
+    animation: lupulse 0.6s ease-out;
+}
+
+@keyframes lupulse {
+    0% { transform: scale(1); }
+    40% { transform: scale(1.15); }
+    100% { transform: scale(1); }
+}
+.hud-shake {
+    animation: hudShake 0.25s;
+}
+
+@keyframes hudShake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-8px); }
+    50% { transform: translateX(8px); }
+    75% { transform: translateX(-4px); }
+    100% { transform: translateX(0); }
+}
+.low-hp-alert {
+    animation: lowhp 1s infinite;
+}
+
+@keyframes lowhp {
+    0%   { box-shadow: inset 0 0 0px rgba(255,0,0,0); }
+    50%  { box-shadow: inset 0 0 35px rgba(255,0,0,0.45); }
+    100% { box-shadow: inset 0 0 0px rgba(255,0,0,0); }
+}
+canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;   /* o 0 */
+    pointer-events: none; /* evita que bloquee clicks */
+}
+#ui-layer,
+#upgrade-screen,
+#pause-screen,
+#boss-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: auto;
+    z-index: 10;
+}
+#upgrade-screen {
+    z-index: 20;
+    pointer-events: auto;
+}
+/* ================================
+   BOSS BAR — CENTRADA Y CORRECTA
+   ================================ */
+#boss-container {
+    position: fixed;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    width: 70%;            /* Ajustá esto si querés más ancha */
+    max-width: 600px;     
+    height: 50px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 50;           /* Por encima de todo */
+    pointer-events: none;  /* No bloquea clics */
+
+    color: white;
+}
+
+#boss-name {
+    font-size: 22px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 6px;
+    text-shadow: 0 0 5px black;
+}
+
+#boss-hp-bar {
+    width: 100%;
+    height: 14px;
+    background: rgba(255, 0, 0, 0.25);
+    border: 2px solid #aa0000;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+#boss-hp-fill {
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(#ff5555, #aa0000);
+    transition: width 0.15s linear;
+}
+#boss-container.fade-out {
+    opacity: 0;
+    transition: opacity 0.8s;
+}
+.card-wrapper {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+    animation: cardEnter 0.35s ease-out forwards;
+}
+
+@keyframes cardEnter {
+    0% {
+        opacity: 0;
+        transform: translateY(25px) scale(0.92);
+    }
+    60% {
+        opacity: 1;
+        transform: translateY(5px) scale(1.01);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+#skills-hud {
+    position: fixed;
+    right: 12px;
+    top: 120px;
+    width: 180px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    z-index: 90;
+}
+
+.skill-entry {
+    background: rgba(0,0,0,0.55);
+    border: 1px solid #666;
+    padding: 6px 8px;
+    border-radius: 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    font-size: 0.9rem;
+    text-shadow: 1px 1px 2px #000;
+}
+#stats-hud {
+    position: fixed;
+    left: 12px;
+    top: 120px;
+    width: 180px;
+    padding: 8px;
+    background: rgba(0,0,0,0.55);
+    border: 1px solid #666;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    color: white;
+    font-size: 0.9rem;
+    text-shadow: 1px 1px 2px #000;
+    z-index: 90;
+}
+.stat-line {
+    display: flex;
+    justify-content: space-between;
+}

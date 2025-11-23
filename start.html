@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+
+    <title>Chrono Survivor Mobile</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- THREE.JS via importmap -->
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.160.0/build/three.module.js"
+            }
+        }
+    </script>
+</head>
+
+<body>
+    
+    <!-- ========================= -->
+    <!--  START SCREEN             -->
+    <!-- ========================= -->
+    <div id="start-screen" class="overlay" style="display:flex;">
+        <h1 class="game-title">CHRONO<br>SURVIVOR</h1>
+        <p class="subtitle">TAP TO START</p>
+
+        <div class="class-selection">
+
+            <div class="class-card" id="pick-ranger">
+                <img src="ranger.png" class="class-image" />
+                <div class="card-text">
+                    <h3>AGENTE</h3>
+                    <p>Rango / DPS</p>
+                </div>
+            </div>
+
+            <div class="class-card" id="pick-knight">
+                <img src="knight.png" class="class-image" />
+                <div class="card-text">
+                    <h3>PALADÍN</h3>
+                    <p>Tanque / Área</p>
+                </div>
+            </div>
+
+            <div class="class-card" id="pick-mage">
+                <img src="mage.png" class="class-image" />
+                <div class="card-text">
+                    <h3>MA-GIO</h3>
+                    <p>Rayo encadenado</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- ========================= -->
+    <!--  UI LAYER (HUD + MENUS)   -->
+    <!-- ========================= -->
+    <div id="ui-layer" style="display:none;">
+        <div id="skills-hud"></div>
+        <div id="stats-hud"></div>
+        <!-- PAUSE BUTTON -->
+        <button id="pause-btn">II</button>
+
+        <!-- TOP HUD -->
+        <div id="top-hud">
+            <div class="stat-box">NV <span id="level-display">1</span></div>
+            <div class="stat-box" id="kill-count-box">💀 <span id="kill-count">0</span></div>
+        </div>
+
+        <!-- HP / XP BARS -->
+        <div id="bars-container">
+
+            <div class="bar-bg main-hp">
+                <div id="hp-bar-fill"></div>
+                <span id="hp-text" class="bar-text">70/70</span>
+            </div>
+
+            <div class="bar-bg xp-bg">
+                <div id="xp-bar-fill"></div>
+            </div>
+
+        </div>
+
+        <!-- SKILL BUTTON -->
+        <div id="skill-button">
+            <img id="skill-icon" src="" />
+            <div id="skill-cooldown"></div>
+        </div>
+
+        <!-- JOYSTICK -->
+        <div id="joystick-zone">
+            <div id="joystick-knob"></div>
+        </div>
+
+        <!-- BOSS UI -->
+        <div id="boss-container" style="display:none;">
+            <div id="boss-name">EL DESTRUCTOR</div>
+
+            <div id="boss-hp-bar">
+                <div id="boss-hp-fill"></div>
+            </div>
+
+            
+        </div>
+        <div id="boss-dialogue" style="display:none;"></div>
+        <!-- LEVEL UP MENU -->
+        <div id="upgrade-screen" class="overlay">
+            <h2 style="color:#f1c40f;text-shadow:0 0 10px #f1c40f;margin-top:40px;">¡LEVEL UP!</h2>
+            <div id="cards-container"></div>
+        </div>
+
+        <!-- GAME OVER -->
+        <div id="game-over-screen" class="overlay">
+            <h1 style="color:#e74c3c;">GAME OVER</h1>
+            <p>Nivel alcanzado: <span id="final-level">1</span></p>
+            <button id="btn-restart">REINICIAR</button>
+        </div>
+
+        <!-- PAUSE MENU -->
+        <div id="pause-screen" class="overlay">
+            <div class="pause-panel">
+                <h1>PAUSA</h1>
+
+                <div class="pause-row">
+                    <label>Volumen</label>
+                    <input id="volume-slider" type="range" min="0" max="1" step="0.1">
+                </div>
+
+                <div class="pause-row">
+                    <label>Auto-Aim</label>
+                    <button id="toggle-autoaim" class="pause-btn">ON</button>
+                </div>
+
+                <div class="pause-row">
+                    <label>Aim Manual</label>
+                    <button id="toggle-manualaim" class="pause-btn">OFF</button>
+                </div>
+
+                <button id="resume-btn" class="pause-btn big">CONTINUAR</button>
+            </div>
+        </div>
+
+    </div>
+    <!-- MOTOR PRINCIPAL -->
+    <script type="module" src="./core.js"></script>
+    <script type="module">
+        import { startGame } from "./core.js";
+
+        document.getElementById("pick-ranger").addEventListener("click", () =>
+            startGame("ranger")
+        );
+
+        document.getElementById("pick-knight").addEventListener("click", () =>
+            startGame("knight")
+        );
+
+        document.getElementById("pick-mage").addEventListener("click", () =>
+            startGame("mage")
+        );
+
+        document.getElementById("btn-restart").addEventListener("click", () => {
+            location.reload();
+        });
+    </script>
+</body>
+</html>
